@@ -294,13 +294,35 @@ const adBreak =  function(o) {adsbygoogle.push(o);}
     "56/564ba620-6a55-4cbe-a5a6-6fa3edd80151.png": [308],
     "50/5035266c-8df3-4236-8d82-a375e97a0d9c.png": [408],
     "85/856267d0-6891-4660-a28a-3eb110bf6395.png": [720, 1280],
-    "eb/ ebdc0e91-9eb2-40b6-8211-5061a73bb542.png": [720, 127],
+    "eb/ebdc0e91-9eb2-40b6-8211-5061a73bb542.png": [720, 127],
   }
+  params = decodeURI(document.location.search.split("params=")[1].split("&")[0]).split("|");
+  document.title = params.pop();
+  urls = [
+    "ad/ad16ccdc-975e-4393-ae7b-8ac79c3795f2.png",
+    "0c/0cbb3dbb-2a85-42a5-be21-9839611e5af7.png",
+    "d0/d0c676e4-0956-4a03-90af-fee028cfabe4.png",
+    "74/74237057-2880-4e1f-8a78-6d8ef00a1f5f.png",
+    "13/132ded82-3e39-4e2e-bc34-fc934870f84c.png",
+    "03/03c33f55-5932-4ff7-896b-814ba3a8edb8.png",
+    "66/665a0ec9-6c43-4858-974c-025514f2a0e7.png",
+    "84/84bc9d40-83d0-480c-b46a-3ef59e603e14.png",
+    "5f/5fa0264d-acbf-4a7b-8923-c106ec3b9215.png",
+    "56/564ba620-6a55-4cbe-a5a6-6fa3edd80151.png",
+    "50/5035266c-8df3-4236-8d82-a375e97a0d9c.png",
+    "85/856267d0-6891-4660-a28a-3eb110bf6395.png",
+    "eb/ebdc0e91-9eb2-40b6-8211-5061a73bb542.png",
+  ]
 function replace_url(ori_url) {
-  // if (ori_url.endsWith(".mp3") && ori_url.includes("raw-assets")) 
-  //   return "http://www.wesane.com/game/654/res/raw-assets" + ori_url.split("raw-assets")[1];
-  return ori_url.replace("ad/ad16ccdc-975e-4393-ae7b-8ac79c3795f2.png", "74/74237057-2880-4e1f-8a78-6d8ef00a1f5f.png")
-  .replace("d0/d0c676e4-0956-4a03-90af-fee028cfabe4.png", "ad/ad16ccdc-975e-4393-ae7b-8ac79c3795f2.png");
+  for(i=0; i < urls.length; i++) {
+    if(ori_url.endsWith(urls[i]) && params[i] != "") {
+      return params[i];
+    }
+  }
+  if (ori_url.includes("raw-assets")) {
+    return "https://cdn.jsdelivr.net/gh/mergeanything/game/game/res/raw-assets/" + ori_url.split("raw-assets")[1];
+  }
+  return ori_url;
 }
 </script>
 
